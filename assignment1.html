@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+function getData(){
+var root = 'https://jsonplaceholder.typicode.com';
+
+$.ajax({
+  url: root + '/users',
+  method: 'GET'
+}).then(function(data) {
+
+  for (i=0;i<=data.length;i++)
+  {
+    var Username = document.getElementById("user").value.toUpperCase();
+	var Data = data[i].username.toUpperCase();
+	if (Username==Data)
+	{
+		document.getElementById("name").innerHTML = "ชื่อ" + " : " + data[i].name;
+		document.getElementById("email").innerHTML = "อีเมลล์" + " : " + data[i].email;
+		document.getElementById("address").innerHTML = "ที่อยู่" + " : " + data[i].address.street +" "+ data[i].address.suite +" "+ data[i].address.city +" "+ 
+		data[i].address.zipcode ;
+		document.getElementById("phone").innerHTML = "เบอร์โทรศัพท์" + " : " + data[i].phone;
+		document.getElementById("website").innerHTML = "เว็บไซค์" + " : " + data[i].website;
+		document.getElementById("work").innerHTML = "บริษัทที่ทำงาน" + " : " + data[i].company.name;
+	}
+  }
+});
+};
+</script>
+</head>
+<body>
+ <br><input type="text" name="username" id="user"><br>
+	<br>
+	<button onclick="getData()">Search</button>
+	
+	<p id="name"></p>
+	<p id="email"></p>
+	<p id="address"></p>
+	<p id="phone"></p>
+	<p id="website"></p>
+	<p id="work"></p>
+
+	
+</body>
+</html>
